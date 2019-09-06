@@ -5,6 +5,19 @@ from django.views.generic import View
 from django.http import HttpResponse
 from django.conf import settings
 
+from rest_framework import viewsets
+
+from .models import Musician, Album
+from .serializers import MusicianSerializer
+
+class MusicianViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing user instances.
+    """
+    serializer_class = MusicianSerializer
+    queryset = Musician.objects.all()
+
+
 class FrontendAppView(View):
     """
     Serves the compiled frontend entry point (only works if you have run `yarn

@@ -14,14 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+
+from rest_framework.routers import DefaultRouter
+
 from django.conf.urls import url
-from django.urls import path
+from django.urls import path, include
 from . import views
+
+router = DefaultRouter()
+router.register(r'musicians', views.MusicianViewSet)
 
 
 urlpatterns = [
     # ... the rest of the urlpatterns ...
     # must be catch-all for pushState to work
-    url(r'^', views.FrontendAppView.as_view()),
-    path('admin/', admin.site.urls)
+    path('api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls')),
+    path('admin/', admin.site.urls),
+    url(r'^', views.FrontendAppView.as_view())
 ]
