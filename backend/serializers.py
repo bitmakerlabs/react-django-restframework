@@ -2,7 +2,7 @@ from backend.models import Musician, Album
 from rest_framework import serializers
 
 
-class AlbumnSerializer(serializers.ModelSerializer):
+class AlbumSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Album
@@ -14,7 +14,7 @@ class AlbumnSerializer(serializers.ModelSerializer):
         )
 
 class MusicianSerializer(serializers.ModelSerializer):
-    albumns = AlbumnSerializer(many=True)
+    albums = AlbumSerializer(many=True)
 
     class Meta:
         model = Musician
@@ -23,5 +23,5 @@ class MusicianSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'instrument',
-            'albumns'
+            'albums'
         )

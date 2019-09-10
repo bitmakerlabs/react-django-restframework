@@ -22,6 +22,7 @@ from . import views
 
 router = DefaultRouter()
 router.register(r'musicians', views.MusicianViewSet)
+router.register(r'albums', views.AlbumViewSet)
 
 
 urlpatterns = [

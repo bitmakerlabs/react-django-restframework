@@ -8,7 +8,7 @@ from django.conf import settings
 from rest_framework import viewsets
 
 from .models import Musician, Album
-from .serializers import MusicianSerializer
+from .serializers import MusicianSerializer, AlbumSerializer
 
 # Buy using ModelViewSet, and just passing the serialzer and model for a given table,
 # we are able to import it in our urls.py, and get all the CRUD actions and url routes for free.
@@ -18,6 +18,15 @@ class MusicianViewSet(viewsets.ModelViewSet):
     """
     serializer_class = MusicianSerializer
     queryset = Musician.objects.all()
+
+
+class AlbumViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing user instances.
+    """
+    serializer_class = AlbumSerializer
+    queryset = Album.objects.all()
+
 
 # A view that matches any request, and routes it to either the statically built assests, or our
 # live-reload local development environment.
