@@ -10,6 +10,8 @@ from rest_framework import viewsets
 from .models import Musician, Album
 from .serializers import MusicianSerializer
 
+# Buy using ModelViewSet, and just passing the serialzer and model for a given table,
+# we are able to import it in our urls.py, and get all the CRUD actions and url routes for free.
 class MusicianViewSet(viewsets.ModelViewSet):
     """
     A viewset for viewing and editing user instances.
@@ -17,7 +19,8 @@ class MusicianViewSet(viewsets.ModelViewSet):
     serializer_class = MusicianSerializer
     queryset = Musician.objects.all()
 
-
+# A view that matches any request, and routes it to either the statically built assests, or our
+# live-reload local development environment.
 class FrontendAppView(View):
     """
     Serves the compiled frontend entry point (only works if you have run `yarn
